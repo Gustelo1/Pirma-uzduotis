@@ -41,26 +41,29 @@ int main() {
     vector <Studentas> studentai;
     cout << "Kiek studentu ivesite?" <<endl;
     cin >> n;
+    float x;
     for (int i=0; i<n; i++){
         cout <<"Iveskite varda ir pavarde"<<endl;
         cin >> temp.Vardas >> temp.Pavarde;
-        cout << "Kiek pazymiu jis turi?" << endl;
-        int m;
-        cin >> m;
-        for (int j=0; j<m; j++){
-            int paz;
-            cout << "Iveskite" <<j+1<< "pazymi"<<endl;
-            cin >> paz;
-            temp.Pazymiai.push_back(paz);
+        cout<<"Iveskite egzamino paz."; 
+        cin>>temp.Egzaminas; 
+        cout << " Iveskite studento pazymius, jei pazymiu nebera, iveskite raide: " << endl;
+        while (cin>>x){
+        if (x>10) {
+            cout<< " Ivestas neteisingas pazymys, bandykite dar karta"<<endl;
         }
-        cout << "Iveskite egzamino pazymi" <<endl;
-        cin >> temp.Egzaminas;
-        vidurkis(temp);
-        mediana(temp);
-        studentai.push_back(temp);
-        temp.Pazymiai.clear();
-        
+        else{
+            temp.Pazymiai.push_back(x);
+        }
     }
+    vidurkis(temp);
+    mediana(temp);
+    studentai.push_back(temp);
+    cin.clear();
+    std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+    }
+
+    
     char pasirinkimas = 'm';
     cout << "Ar norite medianos (M) ar vidurkio (V)?" <<endl;
     cin >> pasirinkimas;
