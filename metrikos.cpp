@@ -10,11 +10,6 @@ void mediana(Studentas &temp) {
     int size = temp.Pazymiai.size();
     laikina = temp.Pazymiai;
     sort(laikina.begin(), laikina.end());
-            cout << "laikina: ";
-    for(int i = 0; i < size; i++) {
-        cout << laikina[i] << " ";
-    }
-    cout << endl;
     if (size % 2 == 0){ 
         temp.mediana = static_cast<double>(laikina[size/2] + laikina[size/2-1]) /2;
     }
