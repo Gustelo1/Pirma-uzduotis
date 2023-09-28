@@ -8,6 +8,28 @@ struct Studentas {
     double mediana;
 };
 
+void vidurkis(Studentas &temp){
+double vidurkis = accumulate(temp.Pazymiai.begin(), temp.Pazymiai.end(), 0.0) / temp.Pazymiai.size();
+temp.Galutinis = 0.4 * vidurkis + 0.6 * temp.Egzaminas;
+}
+
+void mediana(Studentas &temp) {
+    vector <int> laikina;
+    int size = temp.Pazymiai.size();
+    laikina = temp.Pazymiai;
+    sort(laikina.begin(), laikina.end());
+    if (size % 2 == 0){ 
+        temp.mediana = static_cast<double>(laikina[size/2] + laikina[size/2-1]) /2;
+    }
+    else{
+        temp.mediana = laikina[size/2];
+    }
+}
+
+void spausdMediana(Studentas &temp){
+    printf("%-10s%-15s%-10s%-10.2f\n", temp.Vardas.c_str(), temp.Pavarde.c_str(), "", temp.mediana);
+}
+
 void spausdVidurki(Studentas &temp){
     
     printf("%-10s%-15s%-10.2f\n", temp.Vardas.c_str(), temp.Pavarde.c_str(), temp.Galutinis, "");
@@ -33,20 +55,28 @@ int main() {
         }
         cout << "Iveskite egzamino pazymi" <<endl;
         cin >> temp.Egzaminas;
-        double vidurkis = accumulate(temp.Pazymiai.begin(), temp.Pazymiai.end(), 0.0) / temp.Pazymiai.size();
-        temp.Galutinis = 0.4 * vidurkis + 0.6 * temp.Egzaminas;
+        vidurkis(temp);
+        mediana(temp);
         studentai.push_back(temp);
         temp.Pazymiai.clear();
         
     }
-    
-    printf("%-10s%-15s%-10s%\n", "Vardas", "Pavarde", "Vidurkis");
-    for (int i = 0; i < 35; i++) {
+    char pasirinkimas = 'm';
+    cout << "Ar norite medianos (M) ar vidurkio (V)?" <<endl;
+    cin >> pasirinkimas;
+    printf("%-10s%-15s%-10s%-10s%-10s\n", "Vardas", "Pavarde", "Vidurkis", "Mediana", "");
+    for (int i = 0; i < 50; i++) {
     cout << "-";
     }
     cout <<endl;
-    
+    if (pasirinkimas == 'm' || pasirinkimas == 'M'){
     for (auto &i : studentai){
-        spausdVidurki(i);
+    spausdMediana(i);
     }
+    }
+    else{
+    for (auto &i : studentai){
+    spausdVidurki(i);
+    }
+}
 }
