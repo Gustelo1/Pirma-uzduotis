@@ -1,40 +1,4 @@
-#include "my_lib1.h"
-
-struct Studentas {
-    string Vardas, Pavarde;
-    vector <int> Pazymiai;
-    int Egzaminas;
-    double Galutinis;
-    double mediana;
-};
-
-void spausdVidurki(Studentas &temp){
-    
-    printf("%-10s%-15s%-10.2f\n", temp.Vardas.c_str(), temp.Pavarde.c_str(), temp.Galutinis, "");
-}
-  
-void spausdMediana(Studentas &temp){
-    printf("%-10s%-15s%-10s%-10.2f\n", temp.Vardas.c_str(), temp.Pavarde.c_str(), "", temp.mediana);
-}
-
-void vidurkis(Studentas &temp){
-double vidurkis = accumulate(temp.Pazymiai.begin(), temp.Pazymiai.end(), 0.0) / temp.Pazymiai.size();
-temp.Galutinis = 0.4 * vidurkis + 0.6 * temp.Egzaminas;
-}
-
-void mediana(Studentas &temp) {
-    vector <int> laikina;
-    int size = temp.Pazymiai.size();
-    laikina = temp.Pazymiai;
-    sort(laikina.begin(), laikina.end());
-    if (size % 2 == 0){ 
-        temp.mediana = static_cast<double>(laikina[size/2] + laikina[size/2-1]) /2;
-    }
-    else{
-        temp.mediana = laikina[size/2];
-    }
-}
-
+#include "my_lib.h"
 
 void pildymas(Studentas &temp, vector<Studentas> &studentai){
     char generuoti = 'n';
@@ -43,6 +7,7 @@ void pildymas(Studentas &temp, vector<Studentas> &studentai){
     cout <<" Kiek norite ivesti studentu?" << endl;
     cin >> n;
     for (int k=0; k<n; k++){
+    temp.Pazymiai.clear();
     cout <<"Iveskite varda ir pavarde"<<endl;
     cin >> temp.Vardas >> temp.Pavarde;
     cout << " Ar norite sugeneruoti nd pazymius? Jei taip - Y, jei ne - N" << endl;
@@ -87,8 +52,15 @@ int main() {
     char uzkl='n';
     char generuoti = 'y';
     char pasirinkimas = 'm';
+    char skaitymas = 'n';
+    cout << "Ar norite skaityti duomenis is failo (Y), ar rasyti pats (N)?"<< endl;
+    cin >> skaitymas;
+    if (skaitymas == 'y' || skaitymas == 'Y'){
+        skaitytiIsFailo("duomenys.txt", studentai);
+    }
+    else{
     pildymas(temp, studentai);
-    
+    }
         temp.Pazymiai.clear();
         cout << "Ar norite medianos (M) ar vidurkio (V)?" <<endl;
         cin >> pasirinkimas;
