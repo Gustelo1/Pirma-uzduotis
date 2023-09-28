@@ -2,7 +2,6 @@
 
 void pildymas(Studentas &temp, vector<Studentas> &studentai){
     char generuoti = 'n';
-    char v;
     int n = 0;
     int x; 
     cout <<" Kiek norite ivesti studentu?" << endl;
