@@ -24,6 +24,8 @@ using std::istringstream;
 using std::fstream;
 using std::ws;
 
+using namespace std;
+
 struct Studentas {
     string Vardas, Pavarde;
     vector <int> Pazymiai;
