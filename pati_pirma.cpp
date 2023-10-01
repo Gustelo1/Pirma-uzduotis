@@ -79,5 +79,5 @@ int main() {
         spausdVidurki(i);
      }
     }
-    }
+}
     
