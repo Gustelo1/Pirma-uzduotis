@@ -4,3 +4,4 @@ Prideta programa kurianti atsitiktinius pažymius studentams. Pažymių skaičiu
 Skaitymas				
 1000	10000	100000	1000000	10000000
 0.024756	0.316984	2.62974	15.2144	108.981
+.
